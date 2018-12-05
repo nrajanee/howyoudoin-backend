@@ -78,3 +78,9 @@ if(!req.query.emailId){
 
 });
 
+app.get('/',function(req,res){
+     return res.status(200).send({
+       message: 'Reached the main page'
+     });
+});
+app.listen(process.env.PORT || 5000);
