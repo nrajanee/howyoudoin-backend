@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 
-app.get('/',function(req,res){
+app.get('/login',function(req,res){
+ console.log("reached node.js")
  if(!req.query.user){
     return res.status(422).send({
     errorType: 'RequestFormatError',

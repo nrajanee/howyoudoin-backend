@@ -1,0 +1,7 @@
+.idea/*.xml
+*.iml
+/node_modules
+npm-debug.log
+.DS_store 
+/*.env
+
