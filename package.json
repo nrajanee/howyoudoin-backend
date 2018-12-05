@@ -4,6 +4,7 @@
   "description": "Trisha Zalani tzalani@purdue.edu Nikita Rajaneesh nrajanee@purdue.edu  Shivangi Chand chands@purdue.edu",
   "main": "../scripts/loginHandler.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
