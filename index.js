@@ -18,7 +18,9 @@ app.get('/login',function(req,res){
 
 });
 app.get('/',function(req,res){
-     console.log("reached node.js")
+     return res.status(200).send({
+       message: 'Reached the main page'
+     });
 });
 app.listen(process.env.PORT || 5000);
 //app.listen(3000);
