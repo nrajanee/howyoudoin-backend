@@ -1,0 +1,27 @@
+{
+  "name": "cs252-lab6",
+  "version": "1.0.0",
+  "description": "Trisha Zalani tzalani@purdue.edu Nikita Rajaneesh nrajanee@purdue.edu  Shivangi Chand chands@purdue.edu",
+  "main": "../scripts/loginHandler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrajanee/CS252-Lab6.git"
+  },
+  "author": "Shivangi Chand,Trisha Zalani, Nikita Rajaneesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nrajanee/CS252-Lab6/issues"
+  },
+  "homepage": "https://github.com/nrajanee/CS252-Lab6#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.4"
+  },
+
+  "engines": {
+    "node": "10.13.0"
+  }
+}
