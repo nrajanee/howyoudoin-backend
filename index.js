@@ -17,5 +17,9 @@ app.get('/login',function(req,res){
   }
 
 });
-
-app.listen(3000);
+app.get('/',function(req,res){
+     console.log("reached node.js")
+}
+});
+.listen(process.env.PORT || 5000);
+//app.listen(3000);
