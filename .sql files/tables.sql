@@ -1,9 +1,8 @@
 create table Register(
-	UserId integer,
 	Username varchar(32),
 	Password varchar(32),
-	EmailAd varchar(32),
-	primary key(UserId)
+	EmailId varchar(32),
+	primary key(UserName)
 );
 
 create table MoodTracker(
