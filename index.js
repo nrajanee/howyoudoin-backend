@@ -45,42 +45,40 @@ app.get('/login',function(req,res){
       ssl: true
    });*/
 
-   const client = new Client({connectionString: process.env.DATABASE_URL
-      });
+  const client = new Client({connectionString: process.env.DATABASE_URL });
 
   client.connect();
 
      var usern = req.query.userName;
      var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
      client.query(authenticate, (sqlErr,sqlRes) => {
-     if(sqlErr){
-        return res.status(500).send({
+        if(sqlErr){
+            return res.status(500).send({
                    errorType: 'InternalError',
                    message: 'SQL',
-                   });
-     }
+            });
+        }
 
-
-    if(!sqlRes.rows[0]){
-       return res.status(404).send({
-           errorType: 'RequestFormatError',
-           message: 'Cannot find the username.',
-           });
-
-     }
-     console.log(sqlRes.rows[0].password)
-     if(sqlRes.rows[0].password.trim()!== req.query.userPassword.trim()){
-               return res.status(404).send({
-                          errorType: 'RequestFormatError',
-                          message: 'incorrect Password.',
-                          });
-     }
-
-     return res.status(200).send({
-              message: 'Reached the login'
+        if(!sqlRes.rows[0]){
+            return res.status(404).send({
+            errorType: 'RequestFormatError',
+            message: 'Cannot find the username.',
             });
 
-      client.end();
+        }
+        console.log(sqlRes.rows[0].password)
+        if(sqlRes.rows[0].password.trim()!== req.query.userPassword.trim()){
+            return res.status(404).send({
+            errorType: 'RequestFormatError',
+            message: 'incorrect Password.',
+                });
+        }
+
+        return res.status(200).send({
+              message: 'Reached the login'
+        });
+
+        client.end();
 
   });
 
@@ -91,7 +89,7 @@ app.get('/login',function(req,res){
 
 app.get('/register',function(req,res){
  console.log("reached node.js")
- if(!req.params.userName){
+ if(!req.query.userName){
     return res.status(422).send({
     errorType: 'RequestFormatError',
     message: 'Must include the userName.',
@@ -103,19 +101,50 @@ app.get('/register',function(req,res){
      message: 'Must include the password.',
      });
   }
-if(!req.params.emailId){
+  if(!req.query.emailId){
      return res.status(422).send({
      errorType: 'RequestFormatError',
      message: 'Must include the password.',
      });
   }
-   const client = new Client({connectionString: process.env.DATABASE_URL
-   });
+
+  const client = new Client({connectionString: process.env.DATABASE_URL
+  });
 
   client.connect();
+  var usern = req.query.userName;
+  var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
+  client.query(authenticate, (sqlErr,sqlRes) => {
+       if(sqlErr){
+                return res.status(500).send({
+                       errorType: 'InternalError',
+                       message: 'SQL',
+                });
+       }
 
+       if(sqlRes.rows[0]){
+                return res.status(404).send({
+                errorType: 'RequestFormatError',
+                message: 'User already registered',
+                });
+
+       }
+
+  })
   var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.params.userName + "','" +  + req.params.userPassword + "','" + req.params.emailId + "')";
+  client.query(addUser, (sqlErr,sqlRes) => {
+        if(sqlErr){
+            return res.status(500).send({
+                errorType: 'InternalError',
+                message: 'SQL',
+            });
+        }
+        return res.status(200).send({
+            message: 'Registered Successfully'
+        });
 
+        client.end();
+  })
 });
 
 app.get('/',function(req,res){
