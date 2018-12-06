@@ -127,7 +127,7 @@ app.get('/register',function(req,res){
 
 });
 
-app.post('/iFeel', function(req, res) {
+app.get('/iFeel', function(req, res) {
    //userName emotion
     const client = new Client({connectionString: process.env.DATABASE_URL });
     client.connect();
