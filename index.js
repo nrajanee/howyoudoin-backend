@@ -131,10 +131,10 @@ app.post('/iFeel', function(req, res) {
    //userName emotion
     const client = new Client({connectionString: process.env.DATABASE_URL });
     client.connect();
-    var uname = res.query.userName;
     console.log("inside iFeel post")
+    var uname = req.query.userName;
     console.log(uname);
-    var emo = res.query.emotion;
+    var emo = req.query.emotion;
     console.log(emo);
     var getEmo = "select " + emo + " from MoodTracker where Username = '" + uname + "'";
     console.log(getEmo);
@@ -169,7 +169,7 @@ app.post('/iFeel', function(req, res) {
 
 
 app.get('/moodTracker',function(req,res){
-console.log("moodTracker"); 
+console.log("moodTracker");
 console.log(req.query.userName)
 if(!req.query.userName){
     return res.status(422).send({
