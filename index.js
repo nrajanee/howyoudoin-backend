@@ -115,7 +115,7 @@ app.get('/register',function(req,res){
 });
 
 
-app.get('/moodTracker',function(req,res)){
+app.get('/moodTracker',function(req,res){
 console.log(moodTracker.query.userName)
 if(!req.query.userName){
     return res.status(422).send({
@@ -156,7 +156,7 @@ if(!req.query.userName){
 
   });
 
-}
+});
 
 
 
