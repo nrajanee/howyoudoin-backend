@@ -175,11 +175,14 @@ app.post('/iFeel2', function(req, res) {
     console.log(uname);
     var emo = req.query.emotion;
     console.log(emo);
+
+    var increased = req.query.count;
+    console.log(increased);
     const client = new Client({connectionString: process.env.DATABASE_URL });
     //console.log(count);
-    var update_emo = "update MoodTracker set " + emo + " = " + count + " where Username = '" + uname + "'";
+    var update_emo = "update MoodTracker set " + emo + " = " + increased + " where Username = '" + uname + "'";
     console.log(update_emo);
-    client1.query(update_emo, (sqlErr,sqlRes) => {
+    client.query(update_emo, (sqlErr,sqlRes) => {
          if(sqlErr){
              return res.status(500).send({
                     errorType: 'Internal Error',
@@ -190,7 +193,7 @@ app.post('/iFeel2', function(req, res) {
                 message: 'Data modified successfully'
          });
 
-         client1.end();
+         client.end();
     });
 });
 
