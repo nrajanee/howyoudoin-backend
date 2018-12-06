@@ -132,6 +132,7 @@ app.post('/iFeel', function(req, res) {
     const client = new Client({connectionString: process.env.DATABASE_URL });
     client.connect();
     var uname = res.query.userName;
+    console.log("inside iFeel post")
     console.log(uname);
     var emo = res.query.emotion;
     console.log(emo);
