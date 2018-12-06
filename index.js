@@ -147,7 +147,10 @@ app.post('/iFeel', function(req, res) {
                      });
                  }
         console.log(sqlRes.rows[0])
-        count = sqlRes.rows[0];
+
+        if(emo.trim() === 'Happiness'){
+           count = sqlRes.rows[0].happiness;
+        }
         console.log("Emotioncount" + count);
         count++;
         console.log("should get incremented");
