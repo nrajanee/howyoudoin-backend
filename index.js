@@ -106,12 +106,24 @@ app.get('/register',function(req,res){
                 message: 'User already exists',
             });
         }
-
-        client.end();
   })
 
   var addUserToMoodTracker = "INSERT INTO MoodTracker(Username,Happiness,Surprise,Sadness,Fear,Anger,Disgust) VALUES ('" + usern + "',0,0,0,0,0,0)";
+  console.log(addUserToMoodTracker);
+  client.query(addUser, (sqlErr,sqlRes) => {
+          if(sqlErr){
+              return res.status(500).send({
+                  errorType: 'Primary Key exiists',
+                  message: 'User already exists',
+              });
+          }
 
+         return res.status(200).send({
+                         message: 'Registered sucessfully'
+                  });
+
+                  client.end();
+    })
 
 });
 
