@@ -110,7 +110,7 @@ app.get('/register',function(req,res){
 
   var addUserToMoodTracker = "INSERT INTO MoodTracker(Username,Happiness,Surprise,Sadness,Fear,Anger,Disgust) VALUES ('" + usern + "',0,0,0,0,0,0)";
   console.log(addUserToMoodTracker);
-  client.query(addUser, (sqlErr,sqlRes) => {
+  client.query(addUserToMoodTracker, (sqlErr,sqlRes) => {
           if(sqlErr){
               return res.status(500).send({
                   errorType: 'Primary Key exiists',
