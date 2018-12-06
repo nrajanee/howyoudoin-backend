@@ -117,6 +117,8 @@ app.get('/register',function(req,res){
 
   client.connect();
   var usern = req.query.userName;
+  var userp = req.query.userPassword;
+  var em = req.query.emailId;
   /*var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
   client.query(authenticate, (sqlErr,sqlRes) => {
        if(sqlErr){
@@ -139,8 +141,8 @@ app.get('/register',function(req,res){
        })
 
   })*/
-  var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.query.userName + "','" +  + req.query.userPassword + "','" + req.query.emailId + "')";
-  console.log(addUser); 
+  var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + usern "', '" + userp + "' ,'" + em + "')";
+  console.log(addUser);
   client.query(addUser, (sqlErr,sqlRes) => {
         if(sqlErr){
             return res.status(500).send({
