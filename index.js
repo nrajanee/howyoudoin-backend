@@ -30,6 +30,7 @@ app.get('/login',function(req,res){
      var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
      client.query(authenticate, (sqlErr,sqlRes) => {
         if(sqlErr){
+            client.end();
             return res.status(500).send({
                    errorType: 'InternalError',
                    message: 'SQL',
@@ -37,6 +38,7 @@ app.get('/login',function(req,res){
         }
 
         if(!sqlRes.rows[0]){
+             client.end();
             return res.status(404).send({
             errorType: 'RequestFormatError',
             message: 'Cannot find the username.',
@@ -45,17 +47,17 @@ app.get('/login',function(req,res){
         }
         console.log(sqlRes.rows[0].password)
         if(sqlRes.rows[0].password.trim()!== req.query.userPassword.trim()){
+            client.end();
             return res.status(404).send({
             errorType: 'RequestFormatError',
             message: 'incorrect Password.',
                 });
         }
 
+         client.end();
         return res.status(200).send({
               message: 'Reached the login'
         });
-
-        client.end();
 
   });
 
@@ -101,6 +103,7 @@ app.get('/register',function(req,res){
   console.log(addUser);
   client.query(addUser, (sqlErr,sqlRes) => {
         if(sqlErr){
+            client.end();
             return res.status(500).send({
                 errorType: 'Primary Key exiists',
                 message: 'User already exists',
@@ -112,17 +115,16 @@ app.get('/register',function(req,res){
   console.log(addUserToMoodTracker);
   client.query(addUserToMoodTracker, (sqlErr,sqlRes) => {
           if(sqlErr){
+              client.end();
               return res.status(500).send({
                   errorType: 'Primary Key exiists',
                   message: 'User already exists',
               });
           }
-
+          client.end();
          return res.status(200).send({
                          message: 'Registered sucessfully'
                   });
-
-                  client.end();
     })
 
 });
@@ -139,6 +141,7 @@ app.get('/iFeel1', function(req, res){
     var count = 0;
     client.query(getEmo, (sqlErr,sqlRes) => {
         if(sqlErr){
+             client.end();
              return res.status(500).send({
                  errorType: 'Internal Error',
                  message: 'SQL Error',
@@ -171,13 +174,11 @@ app.get('/iFeel1', function(req, res){
         count++;
 
         console.log("EmotioncountIncremented " + count);
+        client.end();
         return res.status(200).send({
                 message: "iFeel1 done",
                 data : count,
         });
-
-
-        client.end();
     });
 
 });
@@ -199,16 +200,17 @@ app.post('/iFeel2', function(req, res) {
     console.log(update_emo);
     client.query(update_emo, (sqlErr,sqlRes) => {
          if(sqlErr){
+             client.end();
              return res.status(500).send({
                     errorType: 'Internal Error',
                     message: 'SQL Error',
              });
          }
+
+         client.end();
          return res.status(200).send({
                 message: 'Data modified successfully'
          });
-
-         client.end();
     });
 });
 
@@ -232,6 +234,7 @@ if(!req.query.userName){
      var authenticate = "SELECT * FROM MoodTracker WHERE Username = '" + usern + "'";
      client.query(authenticate, (sqlErr,sqlRes) => {
      if(sqlErr){
+        client.end();
         return res.status(500).send({
                    errorType: 'InternalError',
                    message: 'SQL',
@@ -240,18 +243,18 @@ if(!req.query.userName){
 
 
     if(!sqlRes.rows[0]){
+       client.end();
        return res.status(404).send({
            errorType: 'RequestFormatError',
            message: 'Cannot find these emotions for this person; this person has no emotions.',
            });
 
      }
+     client.end();
      return res.status(200).send({
               message: 'Reached the moodTracker',
               data: sqlRes.rows[0],
             });
-
-      client.end();
 
   });
 
