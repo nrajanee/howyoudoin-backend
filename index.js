@@ -141,7 +141,7 @@ app.post('/iFeel', function(req, res) {
          client.end();
     });
 });
-
+/*
 app.get('/moodTracker',function(req,res){
 console.log(moodTracker.query.userName)
 if(!req.query.userName){
@@ -184,7 +184,7 @@ if(!req.query.userName){
   });
 
 });
-
+*/
 app.get('/',function(req,res){
      return res.status(200).send({
        message: 'Reached the main page'
