@@ -113,7 +113,7 @@ app.get('/register',function(req,res){
 
   client.connect();
   var usern = req.query.userName;
-  var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
+  /*var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
   client.query(authenticate, (sqlErr,sqlRes) => {
        if(sqlErr){
                 return res.status(500).send({
@@ -130,13 +130,17 @@ app.get('/register',function(req,res){
 
        }
 
-  })
+       return res.status(200).send({
+           message: 'returned from register earlier than it should'
+       })
+
+  })*/
   var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.query.userName + "','" +  + req.query.userPassword + "','" + req.query.emailId + "')";
   client.query(addUser, (sqlErr,sqlRes) => {
         if(sqlErr){
             return res.status(500).send({
-                errorType: 'InternalError',
-                message: 'SQL',
+                errorType: 'Primary Key exiists',
+                message: 'User already exists',
             });
         }
         return res.status(200).send({
