@@ -146,8 +146,9 @@ app.post('/iFeel', function(req, res) {
                             message: 'SQL Error',
                      });
                  }
-        count = sqlRes.rows[0][0];
-        console.log(count); 
+        count = sqlRes.rows[0].cells[0];
+        console.log(sqlRes.rows[0])
+        console.log("Emotioncount" + count);
         count++;
         console.log("should get incremented");
     });
