@@ -132,14 +132,25 @@ app.post('/iFeel', function(req, res) {
     const client = new Client({connectionString: process.env.DATABASE_URL });
     client.connect();
     var uname = res.query.userName;
+    console.log(uname);
     var emo = res.query.emotion;
+    console.log(emo);
     var getEmo = "select " + emo + " from MoodTracker where Username = '" + uname + "'";
+    console.log(getEmo);
     var count = 0;
     client.query(getEmo, (sqlErr,sqlRes) => {
+        if(sqlErr){
+                     return res.status(500).send({
+                            errorType: 'Internal Error',
+                            message: 'SQL Error',
+                     });
+                 }
         count = sqlRes.rows[0][0];
         count++;
     });
+    console.log(count);
     var update_emo = "update MoodTracker set " + emo + " = " + count + " where Username = '" + uname + "'";
+    console.log(update_emo);
     client.query(update_emo, (sqlErr,sqlRes) => {
          if(sqlErr){
              return res.status(500).send({
