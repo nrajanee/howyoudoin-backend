@@ -72,7 +72,7 @@ app.get('/login',function(req,res){
 
   });
 
-  return res.status(200).send({
+  return res.send({
          message: 'Reached the login'
        });
 
