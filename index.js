@@ -126,12 +126,10 @@ app.get('/register',function(req,res){
     })
 
 });
-
-app.post('/iFeel', function(req, res) {
-   //userName emotion
+app.get('/iFeel1', function(req, res){
     const client = new Client({connectionString: process.env.DATABASE_URL });
     client.connect();
-    console.log("inside iFeel post")
+    console.log("inside iFeel1 post")
     var uname = req.query.userName;
     console.log(uname);
     var emo = req.query.emotion;
@@ -141,11 +139,11 @@ app.post('/iFeel', function(req, res) {
     var count = 0;
     client.query(getEmo, (sqlErr,sqlRes) => {
         if(sqlErr){
-                     return res.status(500).send({
-                            errorType: 'Internal Error',
-                            message: 'SQL Error',
-                     });
-                 }
+             return res.status(500).send({
+                 errorType: 'Internal Error',
+                 message: 'SQL Error',
+             });
+        }
         console.log(sqlRes.rows[0]);
 
         if(emo.trim() === 'Happiness'){
@@ -154,16 +152,34 @@ app.post('/iFeel', function(req, res) {
         console.log("Emotioncount " + count);
         //count++;
         //console.log("should get incremented");
-        client.end();
+        count++;
 
+        console.log("EmotioncountIncremented " + count);
+        return res.status(200).send({
+                message: "iFeel1 done",
+                data : count,
+        });
+
+
+        client.end();
     });
 
-    const client2 = new Client({connectionString: process.env.DATABASE_URL });
+});
+
+app.post('/iFeel2', function(req, res) {
+   //userName emotion
+    const client = new Client({connectionString: process.env.DATABASE_URL });
+    client.connect();
+    console.log("inside iFeel2 post")
+    var uname = req.query.userName;
+    console.log(uname);
+    var emo = req.query.emotion;
+    console.log(emo);
+    const client = new Client({connectionString: process.env.DATABASE_URL });
     //console.log(count);
-    count++;
     var update_emo = "update MoodTracker set " + emo + " = " + count + " where Username = '" + uname + "'";
     console.log(update_emo);
-    client2.query(update_emo, (sqlErr,sqlRes) => {
+    client1.query(update_emo, (sqlErr,sqlRes) => {
          if(sqlErr){
              return res.status(500).send({
                     errorType: 'Internal Error',
@@ -174,7 +190,7 @@ app.post('/iFeel', function(req, res) {
                 message: 'Data modified successfully'
          });
 
-         client2.end();
+         client1.end();
     });
 });
 
