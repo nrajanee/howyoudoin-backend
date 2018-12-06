@@ -127,7 +127,7 @@ app.get('/register',function(req,res){
 
 });
 
-app.get('/iFeel', function(req, res) {
+app.post('/iFeel', function(req, res) {
    //userName emotion
     const client = new Client({connectionString: process.env.DATABASE_URL });
     client.connect();
@@ -169,6 +169,7 @@ app.get('/iFeel', function(req, res) {
 
 
 app.get('/moodTracker',function(req,res){
+console.log("moodTracker"); 
 console.log(req.query.userName)
 if(!req.query.userName){
     return res.status(422).send({
