@@ -148,7 +148,7 @@ if(!req.query.userName){
 
      }
      return res.status(200).send({
-              message: 'Reached the login'
+              message: 'Reached the login',
               data: sqlRes.rows[0]
             });
 
