@@ -49,8 +49,9 @@ app.get('/login',function(req,res){
 
   client.connect();
 
-   //var authenticate = "SELECT * FROM Register WHERE Username = " + "'" + userName;
-     client.query("SELECT * FROM Register WHERE Username = 'Test'", (sqlErr,sqlRes) => {
+     var usern = req.params.userName;
+     var authenticate = "SELECT * FROM Register WHERE Username = ?";
+     client.query(authenticate, usern, function(sqlErr,sqlRes) => {
      //if(sqlErr) throw sqlErr;
 
 
@@ -61,7 +62,7 @@ app.get('/login',function(req,res){
            });
 
      }
-     if(sqlRes.Password != password){
+     if(sqlRes.rows[0].Password != password){
                return res.status(404).send({
                           errorType: 'RequestFormatError',
                           message: 'incorrect Password.',
@@ -72,7 +73,7 @@ app.get('/login',function(req,res){
   });
 
   return res.status(200).send({
-         message: 'Reached the main page'
+         message: 'Reached the login'
        });
 
  console.log("done");
@@ -82,7 +83,7 @@ app.get('/login',function(req,res){
 
 app.get('/register',function(req,res){
  console.log("reached node.js")
- if(!req.query.userName){
+ if(!req.params.userName){
     return res.status(422).send({
     errorType: 'RequestFormatError',
     message: 'Must include the userName.',
@@ -94,7 +95,7 @@ app.get('/register',function(req,res){
      message: 'Must include the password.',
      });
   }
-if(!req.query.emailId){
+if(!req.params.emailId){
      return res.status(422).send({
      errorType: 'RequestFormatError',
      message: 'Must include the password.',
@@ -105,7 +106,7 @@ if(!req.query.emailId){
 
   client.connect();
 
-  var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.query.userName + "','" +  + req.query.userPassword + "','" + req.query.emailId + "')";
+  var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.params.userName + "','" +  + req.params.userPassword + "','" + req.params.emailId + "')";
 
 });
 
