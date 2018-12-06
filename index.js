@@ -8,20 +8,8 @@ app.get('/login',function(req,res){
  console.log("reached node.js");
  console.log(req.query.userName);
  console.log(req.query.userPassword);
- /* return res.status(200).send({
-            message: 'Inside login'
-          });*/
 
- /*if(req.query.userName === "Test" && req.query.userPassword === "testpass"){
-    //console.log("passed the test")
-
-    return res.status(200).send({
-           message: 'Inside if statement'
-         });
-
- }*/
-
- /*if(!req.query.userName){
+ if(!req.query.userName){
     return res.status(422).send({
     errorType: 'RequestFormatError',
     message: 'Must include the userName.',
@@ -32,18 +20,7 @@ app.get('/login',function(req,res){
      errorType: 'RequestFormatError',
      message: 'Must include the password.',
      });
-  }*/
-
-  var userName = "Test";
-  var password = "testpass";
-  /*urldb = "postgres://rovdaqsizeykdk:d9575588281b868c9437fa5f4f1a0bdc541bb11fd93a0bd406f2c15faf92a7e3@ec2-23-21-201-12.compute-1.amazonaws.com:5432/d8cb9j3uoqpakk"
-   var client = new pg.Client({
-      host: 'ec2-23-21-201-12.compute-1.amazonaws.com',
-      port: 5432,
-      user: 'rovdaqsizeykdk',
-      password: 'd9575588281b868c9437fa5f4f1a0bdc541bb11fd93a0bd406f2c15faf92a7e3',
-      ssl: true
-   });*/
+  }
 
   const client = new Client({connectionString: process.env.DATABASE_URL });
 
@@ -119,28 +96,7 @@ app.get('/register',function(req,res){
   var usern = req.query.userName;
   var userp = req.query.userPassword;
   var em = req.query.emailId;
-  /*var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
-  client.query(authenticate, (sqlErr,sqlRes) => {
-       if(sqlErr){
-                return res.status(500).send({
-                       errorType: 'InternalError',
-                       message: 'SQL',
-                });
-       }
 
-       if(sqlRes.rows[0]){
-                return res.status(404).send({
-                errorType: 'RequestFormatError',
-                message: 'User already registered',
-                });
-
-       }
-
-       return res.status(200).send({
-           message: 'returned from register earlier than it should'
-       })
-
-  })*/
   var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.query.userName + "','" + req.query.userPassword + "','" + req.query.emailId + "')";
   console.log(addUser);
   client.query(addUser, (sqlErr,sqlRes) => {
@@ -157,6 +113,52 @@ app.get('/register',function(req,res){
         client.end();
   })
 });
+
+
+app.get('/moodTracker',function(req,res)){
+console.log(moodTracker.query.userName)
+if(!req.query.userName){
+    return res.status(422).send({
+    errorType: 'RequestFormatError',
+    message: 'Must include the userName.',
+    });
+ }
+
+   const client = new Client({connectionString: process.env.DATABASE_URL
+      });
+
+  client.connect();
+
+     var usern = req.query.userName;
+     var authenticate = "SELECT * FROM MoodTracker WHERE Username = '" + usern + "'";
+     client.query(authenticate, (sqlErr,sqlRes) => {
+     if(sqlErr){
+        return res.status(500).send({
+                   errorType: 'InternalError',
+                   message: 'SQL',
+                   });
+     }
+
+
+    if(!sqlRes.rows[0]){
+       return res.status(404).send({
+           errorType: 'RequestFormatError',
+           message: 'Cannot find these emotions for this person; this person has no emotions.',
+           });
+
+     }
+     return res.status(200).send({
+              message: 'Reached the login'
+              data: sqlRes.rows[0]
+            });
+
+      client.end();
+
+  });
+
+}
+
+
 
 app.get('/',function(req,res){
      return res.status(200).send({
