@@ -146,17 +146,17 @@ app.post('/iFeel', function(req, res) {
                             message: 'SQL Error',
                      });
                  }
-        console.log(sqlRes.rows[0])
+        console.log(sqlRes.rows[0]);
 
         if(emo.trim() === 'Happiness'){
            count = sqlRes.rows[0].happiness;
         }
-        console.log("Emotioncount" + count);
+        console.log("Emotioncount " + count);
         count++;
         console.log("should get incremented");
     });
     console.log(count);
-    var update_emo = "update MoodTracker set " + emo + " = " + count + " where Username = '" + uname + "'";
+    var update_emo = "update MoodTracker set " + emo + " = " + "1" + " where Username = '" + uname + "'";
     console.log(update_emo);
     client.query(update_emo, (sqlErr,sqlRes) => {
          if(sqlErr){
