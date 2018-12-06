@@ -141,7 +141,7 @@ app.get('/register',function(req,res){
        })
 
   })*/
-  var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + usern "', '" + userp + "' ,'" + em + "')";
+  var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.query.userName + "','" + req.query.userPassword + "','" + req.query.emailId + "')";
   console.log(addUser);
   client.query(addUser, (sqlErr,sqlRes) => {
         if(sqlErr){
