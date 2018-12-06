@@ -88,7 +88,7 @@ app.get('/login',function(req,res){
 });
 
 app.get('/register',function(req,res){
- console.log("reached node.js")
+ console.log("reached login form")
  if(!req.query.userName){
     return res.status(422).send({
     errorType: 'RequestFormatError',
@@ -131,7 +131,7 @@ app.get('/register',function(req,res){
        }
 
   })
-  var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.params.userName + "','" +  + req.params.userPassword + "','" + req.params.emailId + "')";
+  var addUser = "INSERT INTO Register (Username,Password,EmailId) VALUES ('" + req.query.userName + "','" +  + req.query.userPassword + "','" + req.query.emailId + "')";
   client.query(addUser, (sqlErr,sqlRes) => {
         if(sqlErr){
             return res.status(500).send({
