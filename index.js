@@ -149,6 +149,22 @@ app.get('/iFeel1', function(req, res){
         if(emo.trim() === 'Happiness'){
            count = sqlRes.rows[0].happiness;
         }
+        if(emo.trim() === 'Surprise'){
+            count = sqlRes.rows[0].surprise;
+        }
+        if(emo.trim() == 'Anger'){
+            count = sqlRes.rows[0].anger;
+        }
+        if(emo.trim() == 'Sadness'){
+            count = sqlRes.rows[0].sadness;
+        }
+        if(emo.trim() == 'Disgust'){
+            count = sqlRes.rows[0].disgust;
+        }
+        if(emo.trim() == 'Fear'){
+            count = sqlRes.rows[0].fear;
+        }      
+
         console.log("Emotioncount " + count);
         //count++;
         //console.log("should get incremented");
