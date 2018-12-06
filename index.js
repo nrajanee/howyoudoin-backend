@@ -49,12 +49,12 @@ app.get('/login',function(req,res){
 
   client.connect();
 
-   var authenticate = "SELECT * FROM Register WHERE Username = 'Test'";
+   //var authenticate = "SELECT * FROM Register WHERE Username = " + "'" + userName;
      client.query("SELECT * FROM Register WHERE Username = 'Test'", (sqlErr,sqlRes) => {
      //if(sqlErr) throw sqlErr;
 
 
-    /* if(!sqlRes.rows[0]){
+    if(!sqlRes.rows[0]){
        return res.status(404).send({
            errorType: 'RequestFormatError',
            message: 'Cannot find the username.',
@@ -66,9 +66,14 @@ app.get('/login',function(req,res){
                           errorType: 'RequestFormatError',
                           message: 'incorrect Password.',
                           });
-     }*/
+     }
       client.end();
+
   });
+
+  return res.status(200).send({
+         message: 'Reached the main page'
+       });
 
  console.log("done");
 
