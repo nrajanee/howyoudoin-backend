@@ -2,7 +2,7 @@ create table Register(
 	Username varchar(32),
 	Password varchar(32),
 	EmailId varchar(32),
-	primary key(Username)
+	primary key(UserName)
 );
 
 create table MoodTracker(
