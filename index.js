@@ -89,6 +89,10 @@ app.get('/login',function(req,res){
 
 app.get('/register',function(req,res){
  console.log("reached register form")
+ console.log(req.query.userName);
+ console.log(req.query.userPassword);
+ console.log(req.query.emailId);
+
  if(!req.query.userName){
     return res.status(422).send({
     errorType: 'RequestFormatError',
