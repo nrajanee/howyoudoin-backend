@@ -68,8 +68,8 @@ app.get('/login',function(req,res){
            });
 
      }
-     console.log(sqlRes.rows[0])
-     if(sqlRes.rows[0].Password != req.query.userPassword){
+     console.log(sqlRes.rows[0].password)
+     if(new String(sqlRes.rows[0].password).valueOf() != new String (req.query.userPassword).valueOf()){
                return res.status(404).send({
                           errorType: 'RequestFormatError',
                           message: 'incorrect Password.',
