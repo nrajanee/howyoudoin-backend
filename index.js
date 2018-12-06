@@ -1,12 +1,12 @@
 var express = require('express');
 var app = express();
-
+var pg = require('pg');
 const { Client } = require('pg');
 
 app.get('/login',function(req,res){
- console.log("reached node.js")
- console.log(req.query.userName)
- console.log(req.query.userPassword)
+ console.log("reached node.js");
+ console.log(req.query.userName);
+ console.log(req.query.userPassword);
  /* return res.status(200).send({
             message: 'Inside login'
           });*/
@@ -20,7 +20,7 @@ app.get('/login',function(req,res){
 
  }*/
 
- if(!req.query.userName){
+ /*if(!req.query.userName){
     return res.status(422).send({
     errorType: 'RequestFormatError',
     message: 'Must include the userName.',
@@ -31,35 +31,46 @@ app.get('/login',function(req,res){
      errorType: 'RequestFormatError',
      message: 'Must include the password.',
      });
-  }
+  }*/
+
+  var userName = "Test";
+  var password = "testpass";
+  /*urldb = "postgres://rovdaqsizeykdk:d9575588281b868c9437fa5f4f1a0bdc541bb11fd93a0bd406f2c15faf92a7e3@ec2-23-21-201-12.compute-1.amazonaws.com:5432/d8cb9j3uoqpakk"
+   var client = new pg.Client({
+      host: 'ec2-23-21-201-12.compute-1.amazonaws.com',
+      port: 5432,
+      user: 'rovdaqsizeykdk',
+      password: 'd9575588281b868c9437fa5f4f1a0bdc541bb11fd93a0bd406f2c15faf92a7e3',
+      ssl: true
+   });*/
 
    const client = new Client({connectionString: process.env.DATABASE_URL
-   });
+      });
 
   client.connect();
 
-  var authenticate = "SELECT * FROM Register WHERE Username ='" + req.query.userName + "'";
+   var authenticate = "SELECT * FROM Register WHERE Username = 'Test'";
+     client.query("SELECT * FROM Register WHERE Username = 'Test'", (sqlErr,sqlRes) => {
+     //if(sqlErr) throw sqlErr;
 
-     client.query(authenticate, (sqlErr,sqlRes) => {
-     if(sqlErr) throw sqlErr;
 
-
-     if(sqlRes.length <= 0){
+    /* if(!sqlRes.rows[0]){
        return res.status(404).send({
            errorType: 'RequestFormatError',
            message: 'Cannot find the username.',
            });
 
      }
-     if(sqlRes.Password != req.query.userPassword){
+     if(sqlRes.Password != password){
                return res.status(404).send({
                           errorType: 'RequestFormatError',
                           message: 'incorrect Password.',
                           });
-     }
+     }*/
       client.end();
   });
 
+ console.log("done");
 
 
 });
