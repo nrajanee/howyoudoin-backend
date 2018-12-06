@@ -106,12 +106,13 @@ app.get('/register',function(req,res){
                 message: 'User already exists',
             });
         }
-        return res.status(200).send({
-            message: 'Registered Successfully'
-        });
 
         client.end();
   })
+
+  var addUserToMoodTracker = "INSERT INTO MoodTracker(Username,Happiness,Surprise,Sadness,Fear,Anger,Disgust) VALUES ('" + usern + "',0,0,0,0,0,0)";
+
+
 });
 
 app.post('/iFeel', function(req, res) {
@@ -144,7 +145,7 @@ app.post('/iFeel', function(req, res) {
 
 
 app.get('/moodTracker',function(req,res){
-console.log(moodTracker.query.userName)
+console.log(req.query.userName)
 if(!req.query.userName){
     return res.status(422).send({
     errorType: 'RequestFormatError',

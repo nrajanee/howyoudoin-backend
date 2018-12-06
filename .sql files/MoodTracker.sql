@@ -1,0 +1,1 @@
+create table MoodTracker(Username varchar(32) , Happiness integer, Surprise integer, Sadness integer, Fear integer, Anger integer, Disgust integer, primary key (Username), foreign key (Username) references Register(Username));
