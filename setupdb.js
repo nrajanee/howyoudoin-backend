@@ -7,6 +7,7 @@ const client = new Client({
 
 client.connect();
 
+
 client.query('create table Register(Username varchar(32),Password varchar(32),EmailId varchar(32),primary key(Username));', (err, res) => {
   if (err) throw err;
   /*for (let row of res.rows) {
@@ -75,7 +76,8 @@ client.query("insert into MoodTracker values('Disgust', 0);", (err, res) => {
   /*for (let row of res.rows) {
     console.log(JSON.stringify(row));
   }*/
+   client.end();
 });
 
 
-client.end();
+//client.end();
