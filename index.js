@@ -68,6 +68,7 @@ app.get('/login',function(req,res){
            });
 
      }
+     console.log(rows[0].Password)
      if(sqlRes.rows[0].Password != req.query.userPassword){
                return res.status(404).send({
                           errorType: 'RequestFormatError',
