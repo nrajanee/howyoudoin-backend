@@ -176,7 +176,7 @@ if(!req.query.userName){
 
      }
      return res.status(200).send({
-              message: 'Reached the login',
+              message: 'Reached the moodTracker',
               data: sqlRes.rows[0],
             });
 
