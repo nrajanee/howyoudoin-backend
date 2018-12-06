@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var cors = require('cors');
-app.use(cors); 
+app.use(cors);
 const { Client } = require('pg');
 
 app.get('/login',function(req,res){
@@ -53,7 +53,12 @@ app.get('/login',function(req,res){
      var usern = req.query.userName;
      var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
      client.query(authenticate, (sqlErr,sqlRes) => {
-     //if(sqlErr) throw sqlErr;
+     if(sqlErr){
+        return res.status(500).send({
+                   errorType: 'InternalError',
+                   message: 'SQL',
+                   });
+     }
 
 
     if(!sqlRes.rows[0]){
@@ -69,13 +74,14 @@ app.get('/login',function(req,res){
                           message: 'incorrect Password.',
                           });
      }
+
+     return res.status(200).send({
+              message: 'Reached the login'
+            });
+
       client.end();
 
   });
-
-  return res.send({
-         message: 'Reached the login'
-       });
 
  //console.log("done");
 
