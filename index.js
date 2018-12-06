@@ -50,8 +50,8 @@ app.get('/login',function(req,res){
   client.connect();
 
      var usern = req.params.userName;
-     var authenticate = "SELECT * FROM Register WHERE Username = ?";
-     client.query(authenticate, usern, function(sqlErr,sqlRes) => {
+     var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
+     client.query(authenticate, (sqlErr,sqlRes) => {
      //if(sqlErr) throw sqlErr;
 
 
@@ -62,7 +62,7 @@ app.get('/login',function(req,res){
            });
 
      }
-     if(sqlRes.rows[0].Password != password){
+     if(sqlRes.Password != password){
                return res.status(404).send({
                           errorType: 'RequestFormatError',
                           message: 'incorrect Password.',
