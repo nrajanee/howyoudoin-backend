@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
-var cors = require('cors');
-app.use(cors);
+//var cors = require('cors');
+//app.use(cors);
 const { Client } = require('pg');
 
 app.get('/login',function(req,res){
