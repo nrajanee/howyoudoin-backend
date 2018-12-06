@@ -19,8 +19,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="71" column="55" lean-forward="false" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
+            <state relative-caret-position="405">
+              <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -30,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/setupdb.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="10" column="118" lean-forward="false" selection-start-line="10" selection-start-column="110" selection-end-line="10" selection-end-column="118" />
+              <caret line="10" column="65" lean-forward="false" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -72,7 +72,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="399" />
+    <option name="x" value="141" />
     <option name="y" value="50" />
     <option name="width" value="1429" />
     <option name="height" value="772" />
@@ -352,7 +352,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="399" y="50" width="1429" height="772" extended-state="0" />
+    <frame x="141" y="50" width="1429" height="772" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -461,15 +461,15 @@
     <entry file="file://$PROJECT_DIR$/setupdb.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="10" column="118" lean-forward="false" selection-start-line="10" selection-start-column="110" selection-end-line="10" selection-end-column="118" />
+          <caret line="10" column="65" lean-forward="false" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="71" column="55" lean-forward="false" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
+        <state relative-caret-position="405">
+          <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
           <folding />
         </state>
       </provider>
