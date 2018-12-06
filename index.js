@@ -38,7 +38,7 @@ app.get('/login',function(req,res){
 
   client.connect();
 
-  var authenticate = "SELECT * FROM Register WHERE Username ='" + req.query.userName + "';" +;
+  var authenticate = "SELECT * FROM Register WHERE Username ='" + req.query.userName + "'";
 
      client.query(authenticate, (sqlErr,sqlRes) => {
      if(sqlErr) throw sqlErr;

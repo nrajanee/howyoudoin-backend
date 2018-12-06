@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce4ac0b6-41ff-46df-853f-5ba9523642ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="40" column="91" lean-forward="false" selection-start-line="40" selection-start-column="91" selection-end-line="40" selection-end-column="91" />
+              <caret line="40" column="89" lean-forward="false" selection-start-line="40" selection-start-column="89" selection-end-line="40" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -73,8 +72,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="68" />
-    <option name="y" value="478" />
+    <option name="x" value="-84" />
+    <option name="y" value="308" />
     <option name="width" value="1429" />
     <option name="height" value="772" />
   </component>
@@ -353,7 +352,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="68" y="478" width="1429" height="772" extended-state="0" />
+    <frame x="-84" y="308" width="1429" height="772" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -470,7 +469,7 @@
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="40" column="91" lean-forward="false" selection-start-line="40" selection-start-column="91" selection-end-line="40" selection-end-column="91" />
+          <caret line="40" column="89" lean-forward="false" selection-start-line="40" selection-start-column="89" selection-end-line="40" selection-end-column="89" />
           <folding />
         </state>
       </provider>
