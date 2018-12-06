@@ -158,6 +158,34 @@ app.get('/register',function(req,res){
   })
 });
 
+app.post('/iFeel', function(req, res) {
+   //userName emotion
+    const client = new Client({connectionString: process.env.DATABASE_URL });
+    client.connect();
+    var uname = res.query.userName;
+    var emo = res.query.emotion;
+    var getEmo = "select " + emo + " from MoodTracker where Username = '" + uname + "'";
+    var count = 0;
+    client.query(getEmo, (sqlErr,sqlRes) => {
+        count = sqlRes.rows[0][0];
+        count++;
+    });
+    var update_emo = "update MoodTracker set " + emo + " = " + count + " where Username = '" + uname + "'";
+    client.query(update_emo, (sqlErr,sqlRes) => {
+         if(sqlErr){
+             return res.status(500).send({
+                    errorType: 'Internal Error',
+                    message: 'SQL Error',
+             });
+         }
+         return res.status(200).send({
+                message: 'Data modified successfully'
+         });
+
+         client.end();
+    });
+});
+
 app.get('/',function(req,res){
      return res.status(200).send({
        message: 'Reached the main page'
