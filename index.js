@@ -152,11 +152,12 @@ app.post('/iFeel', function(req, res) {
            count = sqlRes.rows[0].happiness;
         }
         console.log("Emotioncount " + count);
-        count++;
-        console.log("should get incremented");
+        //count++;
+        //console.log("should get incremented");
     });
-    console.log(count);
-    var update_emo = "update MoodTracker set " + emo + " = " + "1" + " where Username = '" + uname + "'";
+    //console.log(count);
+    count++;
+    var update_emo = "update MoodTracker set " + emo + " = " + count + " where Username = '" + uname + "'";
     console.log(update_emo);
     client.query(update_emo, (sqlErr,sqlRes) => {
          if(sqlErr){
