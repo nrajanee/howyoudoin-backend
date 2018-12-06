@@ -5,6 +5,21 @@ const { Client } = require('pg');
 
 app.get('/login',function(req,res){
  console.log("reached node.js")
+ console.log(req.query.userName)
+ console.log(req.query.userPassword)
+ /* return res.status(200).send({
+            message: 'Inside login'
+          });*/
+
+ /*if(req.query.userName === "Test" && req.query.userPassword === "testpass"){
+    //console.log("passed the test")
+
+    return res.status(200).send({
+           message: 'Inside if statement'
+         });
+
+ }*/
+
  if(!req.query.userName){
     return res.status(422).send({
     errorType: 'RequestFormatError',
@@ -23,7 +38,7 @@ app.get('/login',function(req,res){
 
   client.connect();
 
-  var authenticate = 'SELECT * FROM Register WHERE Username =' + req.query.userName + ';';
+  var authenticate = "SELECT * FROM Register WHERE Username ='" + req.query.userName + "';" +;
 
      client.query(authenticate, (sqlErr,sqlRes) => {
      if(sqlErr) throw sqlErr;
