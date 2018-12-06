@@ -168,8 +168,6 @@ app.get('/iFeel1', function(req, res){
 
 app.post('/iFeel2', function(req, res) {
    //userName emotion
-    const client = new Client({connectionString: process.env.DATABASE_URL });
-    client.connect();
     console.log("inside iFeel2 post")
     var uname = req.query.userName;
     console.log(uname);
@@ -179,6 +177,7 @@ app.post('/iFeel2', function(req, res) {
     var increased = req.query.count;
     console.log(increased);
     const client = new Client({connectionString: process.env.DATABASE_URL });
+    client.connect();
     //console.log(count);
     var update_emo = "update MoodTracker set " + emo + " = " + increased + " where Username = '" + uname + "'";
     console.log(update_emo);
