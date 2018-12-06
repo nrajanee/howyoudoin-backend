@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
-var pg = require('pg');
+var cors = require('cors');
+app.use(cors); 
 const { Client } = require('pg');
 
 app.get('/login',function(req,res){
@@ -76,7 +77,7 @@ app.get('/login',function(req,res){
          message: 'Reached the login'
        });
 
- console.log("done");
+ //console.log("done");
 
 
 });
