@@ -24,7 +24,7 @@ app.get('/login',function(req,res){
 
   const client = new Client({connectionString: process.env.DATABASE_URL });
 
-  client.connect(); //connect
+  client.connect();
 
      var usern = req.query.userName;
      var authenticate = "SELECT * FROM Register WHERE Username = '" + usern + "'";
